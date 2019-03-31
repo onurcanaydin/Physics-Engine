@@ -18,7 +18,7 @@ namespace cyclone
             acceleration = new Vector3();
             forceAccum = new Vector3();
             damping = 0.995f;
-            inverseMass = 0.1f;
+            inverseMass = 1f;
         }
 
         public void Integrate(float duration)
@@ -37,7 +37,7 @@ namespace cyclone
             /*should be uncommented for games with short acceleration bursts
             position.AddScaledVector(acceleration, duration * duration * 0.5f);*/
 
-            Vector3 resultingAcc = acceleration;
+            Vector3 resultingAcc = new Vector3(acceleration.x, acceleration.y, acceleration.z);
             resultingAcc.AddScaledVector(forceAccum, inverseMass);
 
             velocity.AddScaledVector(resultingAcc, duration);

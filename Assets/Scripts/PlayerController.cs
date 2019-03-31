@@ -17,21 +17,15 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        
+        horizontal = Input.GetAxis("Horizontal");
+        vertical = Input.GetAxis("Vertical");
     }
 
     void FixedUpdate()
     {
-        Debug.Log("horizontal = " + horizontal);
-        Debug.Log("vertical = " + vertical);
-        horizontal = Input.GetAxis("Horizontal");
-        vertical = Input.GetAxis("Vertical");
         cyclone.Vector3 movementVector = new cyclone.Vector3(horizontal, 0, vertical);
         movementVector *= movementSpeed;
         particle.forceAccum = movementVector;
-        Debug.Log("x = " + particle.forceAccum.x);
-        Debug.Log("y = " + particle.forceAccum.y);
-        Debug.Log("z = " + particle.forceAccum.z);
         particle.Integrate(Time.fixedDeltaTime);
         transform.position = particle.position.CycloneToUnity();
     }
