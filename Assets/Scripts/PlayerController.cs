@@ -10,9 +10,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         particle = new cyclone.Particle();
-        particle.position.x = transform.position.x;
-        particle.position.y = transform.position.y;
-        particle.position.z = transform.position.z;
+        particle.SetMass(1f);
+        particle.SetDamping(0.995f);
+        particle.SetPosition(transform.position.x, transform.position.y, transform.position.z);
     }
 
     private void Update()
@@ -25,8 +25,8 @@ public class PlayerController : MonoBehaviour
     {
         cyclone.Vector3 movementVector = new cyclone.Vector3(horizontal, 0, vertical);
         movementVector *= movementSpeed;
-        particle.forceAccum = movementVector;
+        particle.SetForceAccum(movementVector.x, movementVector.y, movementVector.z);
         particle.Integrate(Time.fixedDeltaTime);
-        transform.position = particle.position.CycloneToUnity();
+        transform.position = particle.GetPosition().CycloneToUnity();
     }
 }
