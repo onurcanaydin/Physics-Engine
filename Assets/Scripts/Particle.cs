@@ -31,8 +31,6 @@ namespace cyclone
                 return;
             }
 
-            Debug.Log(acceleration.x + acceleration.y + acceleration.z);
-
             position.AddScaledVector(velocity, duration);
             /*should be uncommented for games with short acceleration bursts
             position.AddScaledVector(acceleration, duration * duration * 0.5f);*/
@@ -47,7 +45,7 @@ namespace cyclone
             ClearAccumulator();
         }
 
-        private void ClearAccumulator()
+        public void ClearAccumulator()
         {
             forceAccum.x = 0;
             forceAccum.y = 0;
@@ -90,6 +88,11 @@ namespace cyclone
             velocity.x = x;
             velocity.y = y;
             velocity.z = z;
+        }
+
+        public Vector3 GetVelocity()
+        {
+            return new Vector3(velocity.x, velocity.y, velocity.z);
         }
 
         public Vector3 GetPosition()

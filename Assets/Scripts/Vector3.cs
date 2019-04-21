@@ -21,21 +21,21 @@ namespace cyclone
             y = yComp;
             z = zComp;
         }
-        private void Invert()
+        public void Invert()
         {
             x = -x;
             y = -y;
             z = -z;
         }
-        private float Magnitude()
+        public float Magnitude()
         {
             return Mathf.Sqrt(x * x + y * y + z * z);
         }
-        private float SquareMagnitude()
+        public float SquareMagnitude()
         {
             return x * x + y * y + z * z;
         }
-        private void Normalize()
+        public void Normalize()
         {
             float length = Magnitude();
             if (length > 0)
@@ -63,11 +63,11 @@ namespace cyclone
             y += vec.y * scale;
             z += vec.z * scale;
         }
-        private float ScalarProduct(Vector3 vec)
+        public float ScalarProduct(Vector3 vec)
         {
             return x * vec.x + y * vec.y + z * vec.z;
         }
-        private Vector3 CrossProduct(Vector3 vec)
+        public Vector3 CrossProduct(Vector3 vec)
         {
             return new Vector3(y * vec.z - z * vec.y, z * vec.x - x * vec.z, x * vec.y - y * vec.x);
         }
@@ -78,6 +78,13 @@ namespace cyclone
         public UnityEngine.Vector3 CycloneToUnity()
         {
             return new UnityEngine.Vector3(x, y, z);
+        }
+        public static Vector3 RandomVector3(Vector3 minVec, Vector3 maxVec)
+        {
+            float x = Random.Range(minVec.x, maxVec.x);
+            float y = Random.Range(minVec.y, maxVec.y);
+            float z = Random.Range(minVec.z, maxVec.z);
+            return new Vector3(x, y, z);
         }
     }
 }
