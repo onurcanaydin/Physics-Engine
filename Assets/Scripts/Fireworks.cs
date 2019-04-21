@@ -62,22 +62,20 @@ public class Fireworks : Particle
             Vector3 vel = new Vector3(0, 0, 0);
             if (fireworksParent != null)
             {
-                Debug.Log("burda");
                 Vector3 pos = fireworksParent.GetPosition();
                 fireworks.SetPosition(pos.x, pos.y, pos.z);
                 vel = fireworksParent.GetVelocity();
             }
             else
             {
-                Debug.Log("hayir burda");
-                fireworks.SetPosition(0, 0, 0);
+                fireworks.SetPosition(0, -13, 0);
             }
             Debug.Log(vel.x);
             Debug.Log(vel.y);
             Debug.Log(vel.z);
 
-            //vel += maxVelocity;//Vector3.RandomVector3(minVelocity, maxVelocity);
-            Vector3 gravity = new Vector3(0, -9.8f, 0);
+            vel += Vector3.RandomVector3(minVelocity, maxVelocity);
+            Vector3 gravity = new Vector3(0, -1f, 0);
 
             fireworks.SetVelocity(vel.x, vel.y, vel.z);
             fireworks.SetMass(1);

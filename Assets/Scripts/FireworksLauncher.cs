@@ -4,13 +4,20 @@ using Vector3 = cyclone.Vector3;
 
 public class FireworksLauncher : MonoBehaviour
 {
-    private static int maxFireworks = 1024;
+    private static int maxFireworks = 512;
     private const int ruleCount = 9;
     public Fireworks[] fireworks = new Fireworks[maxFireworks];
+    public FireworksPrefab[] fireworksPrefab = new FireworksPrefab[maxFireworks];
     public Fireworks.FireworksRule[] rules = new Fireworks.FireworksRule[ruleCount];
     private int nextFirework;
     [SerializeField]
     private FireworksPrefab prefab;
+
+    private void Start()
+    {
+        InitFireworksRules();
+        nextFirework = 0;
+    }
 
     void InitFireworksRules()
     {
@@ -108,6 +115,7 @@ public class FireworksLauncher : MonoBehaviour
         Fireworks.FireworksRule rule = rules[type - 1];
         rule.Create(fireworks[nextFirework], fireworksParent);
         FireworksPrefab pre = Instantiate(prefab);
+        fireworksPrefab[nextFirework] = pre;
         pre.SetStartPosition(fireworks[nextFirework]);
         nextFirework = (nextFirework + 1) % maxFireworks;
     }
@@ -135,6 +143,7 @@ public class FireworksLauncher : MonoBehaviour
                         Fireworks.FireworksRule.Payload payload = rule.payloads[j];
                         Create(payload.type, payload.count, fireworks[i]);
                     }
+                    Destroy(fireworksPrefab[i].gameObject);
                 }
             }
         }
