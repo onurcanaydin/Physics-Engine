@@ -90,4 +90,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac23e7f18e18674f837c5ebbcbf8712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireworksPrefab: []
   prefab: {fileID: 880598065163041335, guid: 73eb587c32b9db14e912ef526f0da0ca, type: 3}

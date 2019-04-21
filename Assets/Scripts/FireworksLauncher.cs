@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using cyclone;
 using Vector3 = cyclone.Vector3;
+using System.Collections.Generic;
 
 public class FireworksLauncher : MonoBehaviour
 {
-    private static int maxFireworks = 512;
     private const int ruleCount = 9;
-    public Fireworks[] fireworks = new Fireworks[maxFireworks];
-    public FireworksPrefab[] fireworksPrefab = new FireworksPrefab[maxFireworks];
+    public List<Fireworks> fireworks = new List<Fireworks>();
+    public List<FireworksPrefab> fireworksPrefab = new List<FireworksPrefab>();
     public Fireworks.FireworksRule[] rules = new Fireworks.FireworksRule[ruleCount];
     private int nextFirework;
     [SerializeField]
@@ -111,13 +111,13 @@ public class FireworksLauncher : MonoBehaviour
     void Create(int type, Fireworks fireworksParent)
     {
         Fireworks newFireworks = new Fireworks();
-        fireworks[nextFirework] = newFireworks;
+        fireworks.Add(newFireworks);
         Fireworks.FireworksRule rule = rules[type - 1];
         rule.Create(fireworks[nextFirework], fireworksParent);
         FireworksPrefab pre = Instantiate(prefab);
-        fireworksPrefab[nextFirework] = pre;
+        fireworksPrefab.Add(pre);
         pre.SetStartPosition(fireworks[nextFirework]);
-        nextFirework = (nextFirework + 1) % maxFireworks;
+        nextFirework = nextFirework + 1;
     }
 
     void Create(int type, int number, Fireworks fireworksParent)
@@ -130,7 +130,7 @@ public class FireworksLauncher : MonoBehaviour
 
     private void FixedUpdate()
     {
-        for(int i=0; i<fireworks.Length; i++)
+        for(int i=0; i<fireworks.Count; i++)
         {
             if(fireworks[i] != null && fireworks[i].type > 0)
             {
@@ -144,6 +144,7 @@ public class FireworksLauncher : MonoBehaviour
                         Create(payload.type, payload.count, fireworks[i]);
                     }
                     Destroy(fireworksPrefab[i].gameObject);
+                    fireworksPrefab[i] = null;
                 }
             }
         }

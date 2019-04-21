@@ -70,9 +70,6 @@ public class Fireworks : Particle
             {
                 fireworks.SetPosition(0, -13, 0);
             }
-            Debug.Log(vel.x);
-            Debug.Log(vel.y);
-            Debug.Log(vel.z);
 
             vel += Vector3.RandomVector3(minVelocity, maxVelocity);
             Vector3 gravity = new Vector3(0, -1f, 0);
