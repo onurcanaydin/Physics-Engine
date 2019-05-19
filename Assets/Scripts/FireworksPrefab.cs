@@ -13,7 +13,6 @@ public class FireworksPrefab : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        fireworks.Integrate(Time.fixedDeltaTime);
         transform.position = fireworks.GetPosition().CycloneToUnity();
     }
 }

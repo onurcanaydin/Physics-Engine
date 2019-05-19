@@ -72,7 +72,7 @@ public class Fireworks : Particle
             }
 
             vel += Vector3.RandomVector3(minVelocity, maxVelocity);
-            Vector3 gravity = new Vector3(0, -1f, 0);
+            Vector3 gravity = new Vector3(0, -2f, 0);
 
             fireworks.SetVelocity(vel.x, vel.y, vel.z);
             fireworks.SetMass(1);

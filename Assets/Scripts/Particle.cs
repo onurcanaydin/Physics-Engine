@@ -99,6 +99,16 @@ namespace cyclone
         {
             return new Vector3(position.x, position.y, position.z);
         }
+
+        public Vector3 GetAcceleration()
+        {
+            return new Vector3(acceleration.x, acceleration.y, acceleration.z);
+        }
+
+        public float GetInverseMass()
+        {
+            return inverseMass;
+        }
     }
 }
 
